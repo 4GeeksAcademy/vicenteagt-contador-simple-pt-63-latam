@@ -17,19 +17,25 @@ import Home from './components/Home';
 let counter = 0
 
 setInterval(() => {
-  let firstDigit = Math.floor((counter / 1) % 60);
-  let secondDigit = Math.floor((counter / 60) % 10);
-  let threeDigit = Math.floor((counter / 60) % 10);
-  let fourDigit = Math.floor((counter / 1000) % 10);
-  let fiveDigit = Math.floor((counter / 10000) % 10);
-  let sixDigit = Math.floor((counter / 100000) % 10);
   counter++
+  let generalSeconds = counter % 60
+  let generalMinutes = Math.floor((counter / 60) % 60)
+  let generalHours = Math.floor((counter / 3600))
+
+  let firstDigit = generalSeconds % 10;
+  let secondDigit = Math.floor(generalSeconds / 10);
+  let threeDigit = generalMinutes % 10;
+  let fourDigit = Math.floor(generalMinutes / 10);
+  let fiveDigit = generalHours % 10;
+  let sixDigit = Math.floor(generalHours / 10);
+
+
 
 
   ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-     
-     
+
+
       <Home
         digitOne={firstDigit}
         digitTwo={secondDigit}
@@ -38,8 +44,8 @@ setInterval(() => {
         digitFive={fiveDigit}
         digitSix={sixDigit}
       />
-     
-     
+
+
     </React.StrictMode>,
   )
 }, 1000)
